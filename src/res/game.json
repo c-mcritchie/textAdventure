@@ -1,0 +1,83 @@
+{
+  "startText": "You wake up in a dingy padded room. A splitting headache is the first thing you notice. \nYou look around and see a lamp on the ground. You also notice a outline of a small door on the wall. \nYou have no idea how you got here, or where here is. \nYou have no idea what to do, but you know you need to get out of here.",
+  "finishText": "Finish",
+  "startingRoom": "Dingy Room",
+  "items": [
+    {
+      "name": "Lamp",
+      "description": "A crusty yellow lamp, it looks like it's been here for a while. \n you notice it has no plug or batteries."
+    }
+  ],
+  "rooms": [
+    {
+      "name": "Dingy Room",
+      "description": "A yellow room with a lamp on the ground. \n The lamp looks very lonely. \n There is a outline of a small door on the wall.",
+      "flags": [
+        "talkedToLamp",
+        "openDoor"
+      ],
+      "actions": [
+        {
+          "name": "talk to lamp",
+          "afterText": "You talk to the lamp on the ground, it allows you to pick it up.",
+          "requiredFlags": [],
+          "flagsToSet": [
+            "talkedToLamp"
+          ],
+          "type": "action"
+        },
+        {
+          "name": "pick up lamp",
+          "afterText": "You pick up the lamp.",
+          "failedText": "You try to pick up the lamp, but it doesn't budge.",
+          "requiredFlags": [
+            "talkedToLamp"
+          ],
+          "flagsToSet": [
+            "openDoor"
+          ],
+          "item": "Lamp",
+          "type": "take"
+        },
+        {
+          "name": "move to door",
+          "afterText": "You head through the door small door, you have to crouch to get through, once through you are in a very small padded room.",
+          "requiredFlags": [
+            "openDoor"
+          ],
+          "flagsToSet": [],
+          "room": "Small Room",
+          "type": "move"
+        }
+      ]
+    },
+    {
+      "name": "Small Room",
+      "description": "A small room with a pedestal in the center. \n There is no ceiling, the walls go up and up and up until you cant see anymore.",
+      "flags": [
+        "placedLamp"
+      ],
+      "actions": [
+        {
+          "name": "move to door",
+          "afterText": "You head through the door small door, you have to crouch to get through, once through, you are back in the dingy room.",
+          "requiredFlags": [],
+          "flagsToSet": [],
+          "room": "Dingy Room",
+          "type": "move"
+        },
+        {
+          "name": "place lamp",
+          "afterText": "You place the lamp on the pedestal.",
+          "failedText": "You can't place the lamp on the pedestal",
+          "requiredFlags": [],
+          "flagsToSet": [
+            "placedLamp"
+          ],
+          "item": "Lamp",
+          "type": "drop"
+        }
+      ]
+    }
+  ]
+}
